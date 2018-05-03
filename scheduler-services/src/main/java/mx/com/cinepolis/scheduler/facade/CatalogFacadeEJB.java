@@ -14,7 +14,7 @@ import javax.inject.Inject;
 @LocalBean
 public class CatalogFacadeEJB {
 
-    @Inject
+    @Inject//lo que hace es ejecutar la implementacion de catalogservice y lo instancia 
     CatalogService catalogService;
 
     public UserTO getSimpleUser()

@@ -11,8 +11,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * @author jrodriguez
@@ -22,6 +25,8 @@ public class CatalogRest {
 
     @EJB
     private CatalogFacadeEJB catalogFacadeEJB;
+    /*@EJB
+    private GithubFacadeEJB	githubFacadeEJB;*/
 
 
     @GET
@@ -34,6 +39,7 @@ public class CatalogRest {
     }
     @GET
     @Produces("application/json")
+    //@Produces("text/html")//---retorna una pagina web
     @Path("/country/{pais}")
     public Response getEstados(@PathParam("pais") String pais) {
     	List<CatalogsTO> catalogsTOList= catalogFacadeEJB.getEstadosList(pais);
@@ -42,4 +48,17 @@ public class CatalogRest {
 		return Response.ok().entity(entity).build();
     	
     }
+    @GET
+    @Produces("application/json")
+    @Path("/country")
+    //country?pais=Mexico
+    public Response getEstados(@Context UriInfo ui) {//trae el path completo de la uri
+    	MultivaluedMap<String, String> queryParams =  ui.getQueryParameters();
+    	String pais = queryParams.getFirst("pais");
+    	List<CatalogsTO> catalogsTOList= catalogFacadeEJB.getEstadosList(pais);
+    	GenericEntity<List<CatalogsTO>> entity = new GenericEntity<List<CatalogsTO>>(catalogsTOList) {};
+		return Response.ok().entity(entity).build();
+    	
+    }
+    
 }
