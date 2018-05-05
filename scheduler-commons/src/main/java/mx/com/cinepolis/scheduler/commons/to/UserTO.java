@@ -13,65 +13,52 @@ public class UserTO  implements Serializable{
 
     private Long idUser;
 
+    private String login;
+
+    private String avatarUrl;
+
     private String name;
+    private int followers;
+    private int following;
+	public Long getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getFollowers() {
+		return followers;
+	}
+	public void setFollowers(int followers) {
+		this.followers = followers;
+	}
+	public int getFollowing() {
+		return following;
+	}
+	public void setFollowing(int following) {
+		this.following = following;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    private String userName;
-
-    private String email;
-
-    /**
-     * @return
-     */
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    /**
-     * @param idUser
-     */
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
-
-    /**
-     * @return
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /**
-     * @param userName
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /**
-     * @return
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    
 }

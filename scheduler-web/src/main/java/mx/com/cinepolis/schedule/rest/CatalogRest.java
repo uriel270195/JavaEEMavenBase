@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -29,6 +30,25 @@ public class CatalogRest {
     private GithubFacadeEJB	githubFacadeEJB;*/
 
 
+    @GET
+    @Produces("application/json")
+    @Path("/users")
+    public Response getAllUsers()
+    {
+    	List<UserTO> userTOList= catalogFacadeEJB.getALLUsers();
+    	GenericEntity<List<UserTO>> entity = new GenericEntity<List<UserTO>>(userTOList) {};
+		return Response.ok().entity(entity).build();
+    }
+    
+    @POST
+    @Produces("application/json")
+    @Path("/create")
+    public Response setRegistrer(UserTO registrer) {
+    	UserTO userTO= catalogFacadeEJB.agregar(registrer);
+		return Response.ok().entity(userTO).build();
+    }
+    
+    
     @GET
     @Produces("application/json")
     @Path("/user")
